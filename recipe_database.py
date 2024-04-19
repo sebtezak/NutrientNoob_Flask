@@ -4,7 +4,7 @@ import csv
 
 
 # Connect to SQLite database
-conn = sqlite3.connect('NutrientNoob/Databases/recipes.db')
+conn = sqlite3.connect('Databases/recipes.db')
 c = conn.cursor()
 
 # Create table
@@ -24,7 +24,7 @@ c.execute('''CREATE TABLE IF NOT EXISTS recipes (
             )''')
 
 # Read data from CSV file and insert into table
-with open('NutrientNoob/RAW_recipes.csv', newline='', encoding='utf-8') as csvfile:
+with open('RAW_recipes.csv', newline='', encoding='utf-8') as csvfile:
     reader = csv.reader(csvfile)
     next(reader)  # Skip header row
     for row in reader:
