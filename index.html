@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--basic info always included in html-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--basic info ends here-->
+
+    <title>Nutrient Noobs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <!--HEADER -- holds the navigation bar and logo-->
+    <header>
+        <div class="header">
+        
+        <!--LOGO HERE-->
+        <div class="logo">
+            <img src="{{ url_for('static', filename='Nutrient Noob Logo.png') }}">
+        </div>
+
+        <!--NAVIGATION BAR HERE-->
+        <div class="nav">
+            <ul>
+                <li><a href="{{ url_for('account') }}">Account</a></li>
+                <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
+                <li><a class="active" href="{{ url_for('index') }}">Home</a></li>
+                <li><input id="searchBar" onkeyup="search()" type="search" placeholder="Search..."></li>
+            </ul>
+        </div>
+        
+        
+        <div id="user-buttons">
+            <a href="{{ url_for('login') }}">
+                <button id="login">Log In</button>
+            </a>
+            <a href="{{ url_for('signup') }}">
+                <button id="signup">Sign Up</button>
+            </a>
+        </div>
+        </div>
+
+    </header>
+
+    <main>
+        <div class="homeTitles">
+            <div class="content">
+                <h4>Welcome to Nutrient Noob</h4>
+                <h1>Revolutionize your health and nutrition</h1>
+                <h3>Recipes curated to your needs</h3>
+                <a href="{{ url_for('recipes') }}">
+                    <h3><div class="button" id="startButton"><button>Start Cooking</button></div></h3>
+                </a>
+            </div>
+        </div>
+
+        <section class="mission">
+            <h2>Our Mission</h2>
+            <p></p>
+        </section>
+
+    </main>
+
+    <div class="sign-up" id="sign-up">
+        <div id="sign-upInfo" style="display: none;" class="sign-upInfo">
+            <div class=""></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

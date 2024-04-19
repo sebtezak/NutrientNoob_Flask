@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--basic info always included in html-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <!--basic info ends here-->
+
+    <title>Nutrient Noobs || Recipes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <!--HEADER -- holds the navigation bar and logo-->
+    <header>
+        <div class="header">
+
+            <!--LOGO HERE-->
+            <div class="logo">
+                <img src="{{ url_for('static', filename='Nutrient Noob Logo.png') }}">
+            </div>
+
+            <!--NAVIGATION BAR HERE-->
+            <div class="nav">
+                <ul>
+                    <li><a href="{{ url_for('account') }}">Account</a></li>
+                    <li><a class="active" href="{{ url_for('recipes') }}">Recipes</a></li>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <!--<input type="text" placeholder="Search..">-->
+                    <li><input type="search" placeholder="Search..."></li>
+                </ul>
+            </div>
+
+            <div id="user-buttons">
+                <a href="{{ url_for('login') }}">
+                    <button id="login">Log In</button>
+                </a>
+                <a href="{{ url_for('signup') }}">
+                    <button id="signup">Sign Up</button>
+                </a>
+            </div>
+        </div>
+
+    </header>
+
+    <div class="body" id="body">
+        <div class="nutrientSelect" id="nutrientSelect">
+            <h2>What will you make? Select your <label for="nutrients">nutrient:</label>
+
+                <select name="nutrients" id="nutrients" label="...">
+                    <option value="Data.Kilocalories">Calories</option>
+                    <option value="Data.Carbohydrate">Carbohydrate</option>
+                    <option value="Data.Cholesterol">Cholesterol</option>
+                    <option value="Data.Choline">Choline</option>
+                    <option value="Data.Fiber">Fiber</option>
+                    <option value="Data.Protein">Protein</option>
+                    <option value="Data.Fat.Saturated Fat">Saturated Fat</option>
+                    <option value="Data.Fat.Total Lipid">Total Fat</option>
+                    <optgroup label="Minerals">
+                        <option value="Data.Major Minerals.Calcium">Calcium</option>
+                        <option value="Data.Major Minerals.Copper">Copper</option>
+                        <option value="Data.Major Minerals.Iron">Iron</option>
+                        <option value="Data.Major Minerals.Magnesium">Magnesium</option>
+                        <option value="Data.Major Minerals.Phosphorus">Phosphorus</option>
+                        <option value="Data.Major Minerals.Potassium">Potassium</option>
+                        <option value="Data.Major Minerals.Sodium">Sodium</option>  
+                        <option value="Data.Major Minerals.Zinc">Zinc</option>
+                    </optgroup>
+                    <optgroup label="Vitamins">
+                        <option value="Data.Vitamins.Vitamin A - RAE">Vitamin A</option>
+                        <option value="Data.Vitamins.Vitamin B12">Vitamin B12</option>
+                        <option value="Data.Vitamins.Vitamin B6">Vitamin B6</option>
+                        <option value="Data.Vitamins.Vitamin C">Vitamin C</option>
+                        <option value="Data.Vitamins.Vitamin E">Vitamin E</option>
+                        <option value="Data.Vitamins.Vitamin K">Vitamin K</option>
+                    </optgroup>
+
+                </select>
+                <button id="findMyButton" onclick="search_ingredients_by_nutrients()">Find my recipe!</button>
+            
+            </h2>
+            <p>Here are the first x characters of the recipe description, ingredients, or however the information end up organized<span id="dots">...</span><span id="more"> and here is the rest of the description/maybe the entire recipe. And now I will write gibberish so that it goes to the second line or perhaps even further who knows pop pop pop.</span></p>
+            <button onclick="readMore()" id="readMoreBtn">Read more</button>
+        </div>
+    </div>
+    
+        <div class="body" id="body">
+            <div class="searchResults" id="searchResults">
+                <h1>Recipe Title/Name</h1>
+                <p>Here are the first x characters of the recipe description, ingredients, or however the information end up organized<span id="dots">...</span><span id="more"> and here is the rest of the description/maybe the entire recipe. And now I will write gibberish so that it goes to the second line or perhaps even further who knows pop pop pop.</span></p>
+                <button onclick="readMore()" id="readMoreBtn">Read more</button>
+            </div>
+        </div>
+
+    
+
+    <div class="sign-up" id="sign-up">
+        <div id="sign-upInfo" style="display: none;" class="sign-upInfo">
+            <div class=></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='readMore.js') }}"></script>
+    <script src="{{ url_for('static', filename='searchingNutrient.py') }}"></script>
+
+</body>
+
+</html>

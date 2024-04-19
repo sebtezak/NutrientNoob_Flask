@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--basic info always included in html-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <!--basic info ends here-->
+
+    <title>Nutrient Noobs || Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!--ICON STYLESHEET-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <section class="container userForms">
+        <div class="signup">
+            <header id="idTitle">Sign Up</header>
+
+            <!--Actual info regarding signup goes here-->
+            <form action="#">
+                <!--User's name-->
+                <div class="inputField">
+                    <input class="input" type="text" placeholder="Username">
+                </div>
+                
+                <!--User email-->
+                <!--Can we remove email for now to make sign in easier?-->
+                <div class="inputField">
+                    <input class="input" type="text" placeholder="Email">
+                </div>
+
+                <!--User password-->
+                <div class="inputField">
+                    <input class="input" type="password" placeholder="Password">
+                </div>
+
+                <div class="inputField">
+                    <input class="input" type="password" placeholder="Confirm Password">
+                </div>
+
+                <!--QUESTION: do we want some way for user's to reset password?-->
+                <!--CHANGED BUTTON TO HAVE TYPE-->
+                <div class="loginButton">
+                    <button type="submit">Sign Up</button>
+                </div>
+
+                <div class="link">
+                    <span>Already have an account? <a href="{{ url_for('login') }}" class="link">Log in!</a></span>
+                </div>
+            </form>
+
+            <div class="homeButton">
+                <a href="{{ url_for('index') }}"><button><i class="fa fa-home"></i></button></a>
+            </div>
+
+        </div>
+    </section>
+
+    <!--JAVASCRIPT COMPONENTS MUST BE LOADED AFTER EVERYTHING CONNECTED TO THEM IS LOADED-->
+    <script src="{{ url_for('static', filename='authorization.js') }}"></script>
+
+</body>
+
+</html>

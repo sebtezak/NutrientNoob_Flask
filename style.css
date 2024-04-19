@@ -1,0 +1,285 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F6F4F4;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #C9D5B5;
+    align-items: center;
+}
+
+.logo {
+    display: inline-block;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #C9D5B5; 
+    padding: 10px 20px;
+}
+
+.logo img {
+    width: 300px;
+    height: auto;
+}
+
+.nav {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding-right: 10px;
+    justify-content: flex-end;
+}
+
+.nav ul {
+    background-color: #C9D5B5;
+    overflow: hidden;
+    list-style-type: none;
+    margin: 0;
+}
+
+.nav li {
+    float: right;
+}
+
+.nav a {
+    float: right;
+    color: #F6F4F4;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+.nav a:hover {
+    background-color: #9F9F92;
+  }
+  
+.nav a.active {
+    background-color: #A9BD89;
+    color: white;
+  }
+
+    .nav input[type=search] {
+        float: right;
+        padding: 6px;
+        border: none;
+        margin-top: 8px;
+        margin-right: 16px;
+        font-size: 17px;
+        color: darkseagreen;
+    }
+
+.body {
+    background-color: #F6F4F4;
+    margin-top: auto;
+}
+
+.searchResults {
+    color: black;
+    margin: 20px;
+}
+
+#more {
+    display: none;
+}
+
+
+#user-buttons {
+    display: flex;
+    align-items: center;
+}
+
+#login,
+#signup {
+    background-color: #6D6466;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+#login:hover,
+#signup:hover {
+    background-color: #A9BD89;
+}
+
+/*Login and Sign Up form styling*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #789051;
+}
+
+.container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #C9D5B5;
+}
+
+form {
+    margin-top: 10px;
+}
+
+form .inputField {
+    margin-top: 20px;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #2C3328;
+}
+
+form .input {
+    height: 100%;
+    width: 100%;
+    color: #2C3328;
+}
+
+.loginButton button {
+    height: 40px;
+    width: 100%;
+    color: #2C3328;
+    background-color: #F6F4F4;
+    margin-top: 20px;
+    border-radius: 10px;
+    border-color: #2C3328;
+    cursor: pointer;
+}
+
+.loginButton button:hover {
+    height: 40px;
+    width: 100%;
+    color: #2C3328;
+    background-color: #A1A78B;
+    color:#F6F4F4;
+    border-color: #f6f6f6;
+}
+
+.login {
+    background: #A9BD89;
+    border-radius: 10px;
+    max-width: 450px;
+    width: 100%;
+    padding: 50px;
+}
+
+.signup {
+    background: #A9BD89;
+    border-radius: 10px;
+    max-width: 450px;
+    width: 100%;
+    padding: 50px;
+}
+
+.link {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.link span {
+    font-size: 12px;
+
+}
+
+.link a { 
+    text-decoration: none;
+    font-weight: bold;
+    font-style: bold;
+}
+
+.link a:hover {
+    text-decoration: underline;
+}
+
+#idTitle {
+    font-size: 30px;
+    font-weight: 400;
+    color: #F6F4F4;
+    text-align: center;
+}
+
+#signup {
+    margin-right: 10px;
+}
+
+.homeButton {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.homeButton button {
+    height: 20px;
+    width: 20px;
+    background-color: white;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.homeButton button:hover {
+    background-color: transparent;
+
+}
+
+.homeTitles {
+    height: 100vh;
+    width: 100%;
+    background-position: center;
+}
+
+.content {
+    position: absolute;
+    top: 25%;
+    left: 3%;
+    transform: translateY(-50%);
+}
+
+h1 {
+    color: #A9BD89;
+    font-size: 30px;
+    margin: 10px 0px 10px;
+}
+
+h3 {
+    color: #C9D5B5;
+    font-size: 20px;
+    margin-bottom: 50px;
+    display: inline-block;
+}
+
+h4 {
+    margin-top: 40px;
+    color: #C9D5B5;
+    letter-spacing: 2px;
+    font-size: 15px;
+}
+
+#startButton button {
+    background-color: #C9D5B5;
+    color: white;
+    border: none;
+    outline: none;
+    padding: 4px 8px;
+    margin-left: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    font-style: bold;
+}
+
+#startButton button:hover {
+    background-color: #A9BD89;
+}
+
+.mission {
+    background-image: url('homeBackground.png');
+}
