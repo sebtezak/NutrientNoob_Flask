@@ -55,7 +55,7 @@ columns = [
 
 # Function to create the SQLite database and table
 def create_database_table():
-    conn = sqlite3.connect("NutrientNoob/Databases/nutrition.db")
+    conn = sqlite3.connect("NutrientNoob_Flask/Databases/nutrition.db")
     c = conn.cursor()
 
     # Create table
@@ -67,10 +67,10 @@ def create_database_table():
 
 # Function to insert data from the CSV file into the SQLite table
 def insert_data_from_csv():
-    conn = sqlite3.connect("NutrientNoob/Databases/nutrition.db")
+    conn = sqlite3.connect("NutrientNoob_Flask/Databases/nutrition.db")
     c = conn.cursor()
 
-    with open("NutrientNoob/RAW_nutrition.csv", "r") as csv_file:
+    with open("NutrientNoob_Flask/RAW_nutrition.csv", "r") as csv_file:
         csv_reader = csv.reader(csv_file)
         next(csv_reader)  # Skip the header row
         for row in csv_reader:
@@ -81,7 +81,7 @@ def insert_data_from_csv():
 
 # Debug function to output nutrition data for the first 5 rows
 def debug_output():
-    conn = sqlite3.connect("NutrientNoob/Databases/nutrition.db")
+    conn = sqlite3.connect("NutrientNoob_Flask/Databases/nutrition.db")
     c = conn.cursor()
 
     # Get user input for ingredient search
@@ -107,7 +107,7 @@ create_database_table()
 insert_data_from_csv()
 
 # Verify that the database was created properly
-conn = sqlite3.connect("NutrientNoob/Databases/nutrition.db")
+conn = sqlite3.connect("NutrientNoob_Flask/Databases/nutrition.db")
 c = conn.cursor()
 c.execute("SELECT COUNT(*) FROM nutrition")
 print("Total rows in the 'nutrition' table:", c.fetchone()[0])
