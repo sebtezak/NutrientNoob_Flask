@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--basic info always included in html-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <!--basic info ends here-->
+
+    <title>Nutrient Noobs || Recipes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <!--HEADER -- holds the navigation bar and logo-->
+    <header>
+        <div class="header">
+
+            <!--LOGO HERE-->
+            <div class="logo">
+                <img src="{{ url_for('static', filename='Nutrient Noob Logo.png') }}">
+            </div>
+
+            <!--NAVIGATION BAR HERE-->
+            <div class="nav">
+                <ul>
+                    <li><a href="{{ url_for('account') }}">Account</a></li>
+                    <li><a class="active" href="{{ url_for('nutrition') }}">Nutrition</a></li>
+                    <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <!--<input type="text" placeholder="Search..">-->
+                    <li><input type="search" placeholder="Search..."></li>
+                </ul>
+            </div>
+
+            <div id="user-buttons">
+                <a href="{{ url_for('login') }}">
+                    <button id="login">Log In</button>
+                </a>
+                <a href="{{ url_for('signup') }}">
+                    <button id="signup">Sign Up</button>
+                </a>
+            </div>
+        </div>
+
+    </header>
+
+    <div class="body" id="body">
+        <div class="nutrientSelect" id="nutrientSelect">
+            <h1>Select nutrients:</h1>
+
+            <!-- General Nutrients -->
+            <h2>General</h2>
+            <ul>
+                <li>
+                    <input type="checkbox" id="carbohydrateCheckbox">
+                    <label for="carbohydrateCheckbox">Carbohydrate</label>
+                    Min: <input type="text" id="carbohydrateMin" placeholder="Min">
+                    Max: <input type="text" id="carbohydrateMax" placeholder="Max">
+                </li>
+                <li>
+                    <input type="checkbox" id="cholesterolCheckbox">
+                    <label for="cholesterolCheckbox">Cholesterol</label>
+                    Min: <input type="text" id="cholesterolMin" placeholder="Min">
+                    Max: <input type="text" id="cholesterolMax" placeholder="Max">
+                </li>
+                <li>
+                    <input type="checkbox" id="cholineCheckbox">
+                    <label for="cholineCheckbox">Choline</label>
+                    Min: <input type="text" id="cholineMin" placeholder="Min">
+                    Max: <input type="text" id="cholineMax" placeholder="Max">
+                </li>
+                <li>
+                    <input type="checkbox" id="fiberCheckbox">
+                    <label for="fiberCheckbox">Fiber</label>
+                    Min: <input type="text" id="fiberMin" placeholder="Min">
+                    Max: <input type="text" id="fiberMax" placeholder="Max">
+                </li>
+                <li>
+                    <input type="checkbox" id="proteinCheckbox">
+                    <label for="proteinCheckbox">Protein</label>
+                    Min: <input type="text" id="proteinMin" placeholder="Min">
+                    Max: <input type="text" id="proteinMax" placeholder="Max">
+                </li>
+                <li>
+                    <input type="checkbox" id="saturatedFatCheckbox">
+                    <label for="saturatedFatCheckbox">Saturated Fat</label>
+                    Min: <input type="text" id="saturatedFatMin" placeholder="Min">
+                    Max: <input type="text" id="saturatedFatMax" placeholder="Max">
+                </li>
+                <li>
+                    <input type="checkbox" id="totalFatCheckbox">
+                    <label for="totalFatCheckbox">Total Fat</label>
+                    Min: <input type="text" id="totalFatMin" placeholder="Min">
+                    Max: <input type="text" id="totalFatMax" placeholder="Max">
+                </li>
+            </ul>
+
+            <!-- Mineral Nutrients -->
+            <h2>Minerals</h2>
+            <ul>
+                <li>
+                    <input type="checkbox" id="calciumCheckbox">
+                    <label for="calciumCheckbox">Calcium</label>
+                    Min: <input type="text" id="calciumMin" placeholder="Min">
+                    Max: <input type="text" id="calciumMax" placeholder="Max">
+                </li>
+                <li>
+                    <input type="checkbox" id="copperCheckbox">
+                    <label for="copperCheckbox">Copper</label>
+                    Min: <input type="text" id="copperMin" placeholder="Min">
+                    Max: <input type="text" id="copperMax" placeholder="Max">
+                </li>
+                <li>
+                    <input type="checkbox" id="ironCheckbox">
+                    <label for="ironCheckbox">Iron</label>
+                    Min: <input type="text" id="ironMin" placeholder="Min">
+                    Max: <input type="text" id="ironMax" placeholder="Max">
+                </li>
+                <li>
+                    <input type="checkbox" id="magnesiumCheckbox">
+                    <label for="magnesiumCheckbox">Magnesium</label>
+                    Min: <input type="text" id="magnesiumMin" placeholder="Min">
+                    Max: <input type="text" id="magnesiumMax" placeholder="Max">
+                </li>
+                <li>
+                    <input type="checkbox" id="phosphorusCheckbox">
+                    <label for="phosphorusCheckbox">Phosphorus</label>
+                    Min: <input type="text" id="phosphorusMin" placeholder="Min">
+                    Max: <input type="text" id="phosphorusMax" placeholder="Max">
+                </li>
+                <li>
+                    <input type="checkbox" id="potassiumCheckbox">
+                    <label for="potassiumCheckbox">Potassium</label>
+                    Min: <input type="text" id="potassiumMin" placeholder="Min"> 
+                    Max: <input type="text" id="potassiumMax" placeholder="Max">
+                </li>
+                <li>
+                    <input type="checkbox" id="sodiumCheckbox">
+                    <label for="sodiumCheckbox">Sodium</label>
+                    Min: <input type="text" id="sodiumMin" placeholder="Min">
+                    Max: <input type="text" id="sodiumMax" placeholder="Max">
+                </li>
+                <li>
+                    <input type="checkbox" id="zincCheckbox">
+                    <label for="zincCheckbox">Zinc</label>
+                    Min: <input type="text" id="zincMin" placeholder="Min">
+                    Max: <input type="text" id="zineMax" placeholder="Max">
+                </li>
+                
+            </ul>
+
+            <!-- Vitamin Nutrients -->
+            <h2>Vitamins</h2>
+            <ul>
+                <li>
+                    <input type="checkbox" id="vitaminACheckbox">
+                    <label for="vitaminACheckbox">Vitamin A</label>
+                    Min: <input type="text" id="vitaminAMin" placeholder="Min">
+                    Max: <input type="text" id="vitaminAMax" placeholder="Max">
+                </li>
+                <li>
+                    <input type="checkbox" id="vitaminB12Checkbox">
+                    <label for="vitaminB12Checkbox">Vitamin B12</label>
+                    Min: <input type="text" id="vitaminB12Min" placeholder="Min">
+                    Max: <input type="text" id="vitaminB12Max" placeholder="Max">
+                </li>
+                <li>
+                    <input type="checkbox" id="vitaminB6Checkbox">
+                    <label for="vitaminB6Checkbox">Vitamin B6</label>
+                    Min: <input type="text" id="vitaminB6Min" placeholder="Min">
+                    Max: <input type="text" id="vitaminB6Max" placeholder="Max">
+                </li>
+                <li>
+                    <input type="checkbox" id="vitaminCCheckbox">
+                    <label for="vitaminCCheckbox">Vitamin C</label>
+                    Min: <input type="text" id="vitaminCMin" placeholder="Min">
+                    Max: <input type="text" id="vitaminCMax" placeholder="Max">
+                </li>
+
+                <li>
+                    <input type="checkbox" id="vitaminECheckbox">
+                    <label for="vitaminECheckbox">Vitamin E</label>
+                    Min: <input type="text" id="vitaminEMin" placeholder="Min">
+                    Max: <input type="text" id="vitaminEMax" placeholder="Max">
+                </li>
+                <li>
+                    <input type="checkbox" id="vitaminKCheckbox">
+                    <label for="vitaminKCheckbox">Vitamin K</label>
+                    Min: <input type="text" id="vitaminKMin" placeholder="Min">
+                    Max: <input type="text" id="vitaminKMax" placeholder="Max">
+                </li>
+            </ul>
+
+            <!-- Button to trigger search -->
+            <button id="findMyButton">Find ingredients!</button>
+
+            <!-- Recipe description -->
+            <p>Here are the first x characters of the recipe description, ingredients, or however the information ends up organized<span id="dots">...</span><span id="more"> and here is the rest of the description/maybe the entire recipe. And now I will write gibberish so that it goes to the second line or perhaps even further who knows pop pop pop.</span></p>
+            <button onclick="readMore()" id="readMoreBtn">Read more</button>
+        </div>
+    </div>
+    
+    <div class="body" id="body">
+        <div class="searchResults" id="searchResults">
+            <h1>Recipe Title/Name</h1>
+            <p>Here are the first x characters of the recipe description, ingredients, or however the information ends up organized<span id="dots">...</span><span id="more"> and here is the rest of the description/maybe the entire recipe. And now I will write gibberish so that it goes to the second line or perhaps even further who knows pop pop pop.</span></p>
+            <button onclick="readMore()" id="readMoreBtn">Read more</button>
+        </div>
+    </div>
+
+    <div class="sign-up" id="sign-up">
+        <div id="sign-upInfo" style="display: none;" class="sign-upInfo">
+            <div class=></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='readMore.js') }}"></script>
+    <script>
+        document.getElementById('findMyButton').addEventListener('click', function() {
+            var nutrients = [];
+    
+            // Iterate over each nutrient checkbox
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    var nutrientName = checkbox.nextElementSibling.textContent;
+                    var minInput = checkbox.nextElementSibling.nextElementSibling;
+                    var maxInput = minInput.nextElementSibling;
+    
+                    var min = minInput ? minInput.value.trim() : ''; // Check if minInput exists
+                    var max = maxInput ? maxInput.value.trim() : ''; // Check if maxInput exists
+    
+                    // Store the nutrient info in an object
+                    var nutrientInfo = {
+                        name: nutrientName,
+                        min: min,
+                        max: max
+                    };
+    
+                    nutrients.push(nutrientInfo);
+                }
+            });
+    
+            // Now 'nutrients' array contains all the checked nutrients with their corresponding min and max values
+            console.log(nutrients);
+            
+            
+            // Send the nutrients array to the backend using Fetch
+            fetch('/backend/endpoint', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nutrients: nutrients })
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(data => {
+                //Handle the response from the backend
+                console.log(data);
+                window.location.href = '/nutrientsearch';
+            })
+            /*.catch(error => {
+                // Handle errors
+                console.error('There was a problem with the fetch operation:', error);
+            }); */
+
+                    
+        });
+    </script>
+
+</body>
+</html>
