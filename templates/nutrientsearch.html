@@ -3,7 +3,7 @@
 <head>
     <!--basic info always included in html-->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--basic info ends here-->
 
     <title>Nutrient Noobs || Recipes</title>
@@ -46,5 +46,19 @@
     
     <div class="nutrientSearchResults" id="nutrientSearchResults">
         <h1>Search Results:</h1>
+        <ul id="searchResultsList">
+            <!-- Results will be dynamically added here -->
+        </ul>
+    </div>
 
-    </body>
+    <script>
+        const data = JSON.parse(sessionStorage.getItem('nutrientData'));
+        if (data) {
+            // Process and display the data as needed
+            console.log(data);
+        } else {
+            console.error('No data found in session storage');
+        }
+    </script>
+</body>
+</html>

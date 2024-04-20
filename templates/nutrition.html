@@ -260,14 +260,14 @@
                 throw new Error('Network response was not ok.');
             })
             .then(data => {
-                //Handle the response from the backend
+                sessionStorage.setItem('nutrientData', JSON.stringify(data));
                 console.log(data);
                 window.location.href = '/nutrientsearch';
             })
-            /*.catch(error => {
+            .catch(error => {
                 // Handle errors
                 console.error('There was a problem with the fetch operation:', error);
-            }); */
+            }); 
 
                     
         });

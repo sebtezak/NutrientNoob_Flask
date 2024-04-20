@@ -101,7 +101,7 @@ def format_nutrient_search(array):
         
     #print(names, mins, maxs)
     search_result = get_top_ingredients_by_nutrient(names, mins, maxs)
-    print(search_result)
+    #print(search_result)
 
     return search_result
 
