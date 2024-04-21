@@ -301,8 +301,11 @@ h4 {
     color: white;
     border: none;
     outline: none;
+    font-size: 20px;
     padding: 4px 8px;
-    margin-left: 20px;
+    margin-left: 7px;
+    margin-top: 20px;
+    margin-bottom: 30px;
     cursor: pointer;
     border-radius: 5px;
     text-decoration: none;
@@ -315,6 +318,7 @@ h4 {
 
 #nutrientSearchResults{
     margin-left: 35px;
+    color: #A9BD89;
 }
 
 #ingredientSelect{
