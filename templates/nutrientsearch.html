@@ -28,7 +28,7 @@
                     <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
                     <li><a href="{{ url_for('index') }}">Home</a></li>
                     <!--<input type="text" placeholder="Search..">-->
-                    <li><input type="search" placeholder="Search..."></li>
+                    <!--<li><input type="search" placeholder="Search..."></li>-->
                 </ul>
             </div>
 
@@ -52,6 +52,7 @@
     </div>
 
     <script>
+        // this script displays the ingredients returned by the nutrienta search
         const data = JSON.parse(sessionStorage.getItem('nutrientData'));
         const searchResultsList = document.getElementById('searchResultsList');
 
@@ -72,14 +73,11 @@
             }
         } else {
             console.error('No data found in session storage');
-            //const listItem = document.createElement('li');
             const title = document.createElement('h2');
 
             title.textContent = "No ingredient matches the selected nutritional requirements";
-            //listItem.appendChild(title);
             searchResultsList.appendChild(title);
         }
-    //});
     </script>
 </body>
 </html>
