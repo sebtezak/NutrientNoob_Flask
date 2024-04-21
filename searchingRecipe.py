@@ -17,7 +17,7 @@ def get_top_recipes(array):
         where_clause = " AND ".join(conditions)
 
         # Execute SQL query to retrieve top 20 recipes matching the ingredients
-        cursor.execute(f"SELECT name FROM Recipes WHERE {where_clause} ORDER BY Description LIMIT 2000")
+        cursor.execute(f"SELECT name, id FROM Recipes WHERE {where_clause} ORDER BY Description LIMIT 2000")
         
         # Fetch the results
         top_recipes = cursor.fetchall()
@@ -41,5 +41,6 @@ def format_recipe_search(array):
             result.append(value)
 
     result_recipes = get_top_recipes(result)
+    print(result_recipes[0:20])
     random.shuffle(result_recipes)
     return result_recipes
