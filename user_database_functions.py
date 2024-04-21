@@ -85,4 +85,22 @@ def configure_user_profile(user_data):
         # Close the database connection
         conn.close()
 
-    
+
+def check_login(login_data):
+    # Connect to the user database
+    conn = sqlite3.connect('Databases/user.db')
+    c = conn.cursor()
+
+    # Extract username and password from login_data
+    username = login_data.get('username')
+    password = login_data.get('password')
+
+    # Query the database to check if the credentials are valid
+    c.execute("SELECT user_id FROM user WHERE username = ? AND password = ?", (username, password))
+    user_id = c.fetchone()
+
+    # Close the database connection
+    conn.close()
+
+    # Return the user_id if credentials are valid, otherwise return 0
+    return user_id[0] if user_id else 0

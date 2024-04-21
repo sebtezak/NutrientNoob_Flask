@@ -93,6 +93,13 @@ def setup_user_profile():
 
     return jsonify(user_profile_data)
 
+@app.route('/get_login_data', methods=['POST'])
+def get_login_data():
+    login_data = request.json.get('login_data', [])
+    valid_login = check_login(login_data)
+
+    return jsonify(valid_login)
+
 
 
 if __name__ == '__main__':

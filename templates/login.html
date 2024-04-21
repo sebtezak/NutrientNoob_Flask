@@ -21,24 +21,25 @@
             <form action="#">
                 <!--Removed email to add username instead-->
                 <div class="inputField">
-                    <input class="input" type="" placeholder="Username">
+                    <input class="input" type="" id="username" placeholder="Username">
                 </div>
 
                 <!--User password-->
                 <div class="inputField">
-                    <input class="input" type="password" placeholder="Password">
+                    <input class="input" type="password" id="password" placeholder="Password">
                 </div>
 
                 <!--QUESTION: do we want some way for user's to reset password?-->
 
-                <div class="loginButton">
-                    <button>Log In</button>
-                </div>
+                
 
                 <div class="link">
                     <span>Don't Have an account? <a href="{{ url_for('signup') }}" class="link">Sign up!</a></span>
                 </div>
             </form>
+            <div class="loginButton" id="loginButton">
+                <button type="submit">Log In</button>
+            </div>
 
             <div class="homeButton">
                 <a href="{{ url_for('index') }}"><button><i class="fa fa-home"></i></button></a>
@@ -47,8 +48,62 @@
         </div>
     </section>
 
-    <!--JAVASCRIPT COMPONENTS MUST BE LOADED AFTER EVERYTHING CONNECTED TO THEM IS LOADED-->
-    <script src="{{ url_for('static', filename='authorization.js') }}"></script>
+    <script>
+        document.getElementById('loginButton').addEventListener('click', function() {
+            // Get the login values from the input fields
+            var username = document.getElementById('username').value.trim();
+            var password = document.getElementById('password').value.trim();
+            
+
+            // Check password criteria
+            var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+            if (!passwordRegex.test(password)) {
+                alert('Password must be at least 8 characters long, contain at least one uppercase letter, and one number');
+                return;
+            }
+
+            var login_data = {
+                username: username,
+                password: password
+            };
+
+        
+            
+            // Send a POST request to the server with the user data
+            fetch('/get_login_data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({login_data: login_data})
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(data => {
+                
+                console.log(data);
+                if (data == 0) {
+                    alert('Invalid Credentials');
+                    return
+                }
+                else {
+                    sessionStorage.setItem('username', username);
+                    sessionStorage.setItem('user_id', JSON.stringify(data));
+                    console.log("ok");
+                    window.location.href = '/';
+                }
+                
+                
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            }); 
+        });
+    </script>
 
 </body>
 </html>
