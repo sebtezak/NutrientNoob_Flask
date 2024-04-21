@@ -321,6 +321,11 @@ h4 {
     color: #A9BD89;
 }
 
+#recipeSearchResults{
+    margin-left: 35px;
+    color: #A9BD89;
+}
+
 #ingredientSelect{
     margin-left: 35px;
     color: #A9BD89;

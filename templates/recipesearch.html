@@ -59,13 +59,22 @@
         if (data) {
             // logs vector in the console for development purposes
             console.log(data);
+            for (var i = 0; i < data.length; i++) {
+                const listItem = document.createElement('li');
+                const title = document.createElement('h2');
+
+                // displays each recipe name on the results page in the form of a list
+                title.textContent = data[i][0];
+                listItem.appendChild(title);
+                searchResultsList.appendChild(listItem);
+            }
 
         } 
         else {
             console.error('No data found in session storage');
             const title = document.createElement('h2');
 
-            title.textContent = "No ingredient matches the selected nutritional requirements";
+            title.textContent = "No recipe matches the requested ingredient list";
             searchResultsList.appendChild(title);
         }
     </script>
