@@ -53,12 +53,33 @@
 
     <script>
         const data = JSON.parse(sessionStorage.getItem('nutrientData'));
+        const searchResultsList = document.getElementById('searchResultsList');
+
         if (data) {
-            // Process and display the data as needed
+            // logs vector in the console for development purposes
             console.log(data);
+
+            // lists each ingredient that is returned from the search
+            for (const ingredient of data){
+                console.log(ingredient);
+                const listItem = document.createElement('li');
+                const title = document.createElement('h2');
+
+                // displays each ingredient on the results page in the form of a list
+                title.textContent = ingredient;
+                listItem.appendChild(title);
+                searchResultsList.appendChild(listItem);
+            }
         } else {
             console.error('No data found in session storage');
+            //const listItem = document.createElement('li');
+            const title = document.createElement('h2');
+
+            title.textContent = "No ingredient matches the selected nutritional requirements";
+            //listItem.appendChild(title);
+            searchResultsList.appendChild(title);
         }
+    //});
     </script>
 </body>
 </html>

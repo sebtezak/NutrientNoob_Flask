@@ -249,6 +249,10 @@ h1 {
     margin: 10px 0px 10px;
 }
 
+h2{
+    color: #A9BD89;
+}
+
 h3 {
     color: #C9D5B5;
     font-size: 20px;
@@ -282,4 +286,66 @@ h4 {
 
 .mission {
     background-image: url('homeBackground.png');
+}
+
+.nutrientSelect{
+    margin-left: 30px;
+}
+
+.nutrientSelect li{
+    list-style-type: none;
+}
+
+#findMyButton button{
+    background-color: #C9D5B5;
+    color: white;
+    border: none;
+    outline: none;
+    padding: 4px 8px;
+    margin-left: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    font-style: bold;
+}
+
+#findMyButton button:hover{
+    background-color: #A9BD89;    
+}
+
+#nutrientSearchResults{
+    margin-left: 35px;
+}
+
+#ingredientSelect{
+    margin-left: 35px;
+    color: #A9BD89;
+}
+
+#ingredientSelect li{
+    list-style-type: none;
+}
+
+#searchResultsList{
+    margin-left: 10px;
+    /*list-style-type: none;*/
+}
+
+/*#searchResultsList li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    padding: 10px;
+}*/
+
+#searchResultsList h2 {
+    color: #A9BD89;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+#searchResultsList p {
+    color: #A9BD89;
+    font-size: 1em;
+    margin-bottom: 0;
 }
