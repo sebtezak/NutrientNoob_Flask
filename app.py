@@ -59,6 +59,19 @@ def get_recipes():
 def redirect_recipe_search():
     return render_template('recipesearch.html')
 
+@app.route('/get_instructions', methods=['POST'])
+def get_instructions():
+    # Extract the ingredients from the request
+    recipes = request.json.get('id', [])
+
+    result_recipe_instructions = format_recipe_search(recipes)
+
+    return jsonify(result_recipe_instructions)
+
+@app.route('/recipeinstructions')
+def redirect_recipe_instructions():
+    return render_template('recipeinstructions.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

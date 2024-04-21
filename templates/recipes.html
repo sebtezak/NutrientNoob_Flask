@@ -120,7 +120,7 @@
             }
             throw new Error('Network response was not ok.');
         })
-        .then(data => {
+        .then(data => { //redirection of data 
             sessionStorage.setItem('recipeData', JSON.stringify(data));
             console.log(data);
             window.location.href = '/recipesearch';

@@ -61,17 +61,41 @@
             console.log(data);
             for (var i = 0; i < data.length; i++) {
                 const listItem = document.createElement('li');
-                const link = document.createElement('a'); // create anchor tag
+                const id = 'recipeTitle' + i; 
+                listItem.setAttribute('id', id);
+                const link = document.createElement('a'); // link to the recipe instructions page
                 const title = document.createElement('h2');
 
-                // Set the href attribute of the anchor tag to the current page URL
+                // links to the recipe instructions page
                 link.href = "/recipeinstructions";
-
-                // displays each recipe name on the results page in the form of a list
-                title.textContent = data[i][0];
-                link.appendChild(title); // append the title to the anchor tag
-                listItem.appendChild(link); // append the anchor tag to the list item
+                
+                title.textContent = data[i][0]; // access the correct index within the array
+                link.appendChild(title); 
+                listItem.appendChild(link); 
                 searchResultsList.appendChild(listItem);
+
+                listItem.addEventListener('click', function() {
+                    const id = this.id;
+                    fetch('/get_instructions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ id : id })
+                    }).then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        }
+                        throw new Error('Network response was not ok.');
+                    }).then(data => { //redirection of data 
+                        sessionStorage.setItem('recipeData', JSON.stringify(data));
+                        console.log(data);
+                        window.location.href = '/recipeinstructions';
+                        
+                    }).catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+                });
             }
 
         } 
