@@ -24,8 +24,8 @@
             <div class="nav">
                 <ul>
                     <li><a href="{{ url_for('account') }}">Account</a></li>
-                    <li><a href="{{ url_for('nutrition') }}">Nutrition</a></li>
-                    <li><a class = "active" href="{{ url_for('recipes') }}">Recipes</a></li>
+                    <li><a class="active" href="{{ url_for('nutrition') }}">Nutrition</a></li>
+                    <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
                     <li><a href="{{ url_for('index') }}">Home</a></li>
                     <!--<input type="text" placeholder="Search..">-->
                     <!--<li><input type="search" placeholder="Search..."></li>-->
@@ -44,8 +44,10 @@
 
     </header>
     
-    <div class="recipeSearchResults" id="recipeSearchResults">
-        <h1>Search Results:</h1>
+    <div class="nutrientSearchResults" id="nutrientSearchResults">
+        <h1 id="recipeName">
+            <!--result will change dependent on the recipe clicked by the user-->
+        </h1>
         <ul id="searchResultsList">
             <!-- Results will be dynamically added here -->
         </ul>
@@ -53,35 +55,9 @@
 
     <script>
         // this script displays the ingredients returned by the nutrienta search
-        const data = JSON.parse(sessionStorage.getItem('recipeData'));
-        const searchResultsList = document.getElementById('searchResultsList');
+        // const data = JSON.parse(sessionStorage.getItem('nutrientData'));
+        // const searchResultsList = document.getElementById('searchResultsList');
 
-        if (data) {
-            // logs vector in the console for development purposes
-            console.log(data);
-            for (var i = 0; i < data.length; i++) {
-                const listItem = document.createElement('li');
-                const link = document.createElement('a'); // create anchor tag
-                const title = document.createElement('h2');
-
-                // Set the href attribute of the anchor tag to the current page URL
-                link.href = "/recipeinstructions";
-
-                // displays each recipe name on the results page in the form of a list
-                title.textContent = data[i][0];
-                link.appendChild(title); // append the title to the anchor tag
-                listItem.appendChild(link); // append the anchor tag to the list item
-                searchResultsList.appendChild(listItem);
-            }
-
-        } 
-        else {
-            console.error('No data found in session storage');
-            const title = document.createElement('h2');
-
-            title.textContent = "No recipe matches the requested ingredient list";
-            searchResultsList.appendChild(title);
-        }
     </script>
 </body>
 </html>
