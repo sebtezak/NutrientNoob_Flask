@@ -41,6 +41,6 @@ def format_recipe_search(array):
             result.append(value)
 
     result_recipes = get_top_recipes(result)
-    print(result_recipes[0:20])
+    
     random.shuffle(result_recipes)
     return result_recipes

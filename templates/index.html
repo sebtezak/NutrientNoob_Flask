@@ -72,6 +72,18 @@
         </div>
     </div>
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <!--<script src="{{ url_for('static', filename='script.js') }}"></script>-->
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var username = sessionStorage.getItem('username');
+            if (username) {
+                var welcomeMessage = document.createElement('div');
+                welcomeMessage.innerHTML = '<h1>Welcome, ' + username + '!</h1>';
+                var mainElement = document.querySelector('main');
+                mainElement.insertBefore(welcomeMessage, mainElement.firstChild);
+            }
+        });
+    </script>
 </body>
 </html>

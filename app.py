@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from searchingNutrient import *
 from searchingRecipe import *
+from user_database_functions import *
 
 
 app = Flask(__name__)
@@ -58,6 +59,40 @@ def get_recipes():
 @app.route('/recipesearch')
 def redirect_recipe_search():
     return render_template('recipesearch.html')
+
+@app.route('/get_instructions', methods=['POST'])
+def get_instructions():
+    # Extract the ingredients from the request
+    recipes = request.json.get('id', [])
+
+    result_recipe_instructions = format_recipe_search(recipes)
+
+    return jsonify(result_recipe_instructions)
+
+@app.route('/recipeinstructions')
+def redirect_recipe_instructions():
+    return render_template('recipeinstructions.html')
+
+@app.route('/get_user_data', methods=['POST'])
+def get_user_data():
+    # Extract the ingredients from the request
+    user_data = request.json.get('user_data', [])
+    user_id = add_new_user(user_data)
+    print(user_id)
+
+    return jsonify(user_id)
+
+@app.route('/usersetup')
+def user_setup():
+    return render_template('usersetup.html')
+
+@app.route('/setup_user_profile', methods=['POST'])
+def setup_user_profile():
+    user_profile_data = request.json.get('userData', [])
+    configure_user_profile(user_profile_data)
+
+    return jsonify(user_profile_data)
+
 
 
 if __name__ == '__main__':

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--basic info always included in html-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--basic info ends here-->
+
+    <title>Nutrient Noobs || User Setup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!--ICON STYLESHEET-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <section class="container userForms">
+        <div class="usersetup">
+            <header id="idTitle">Welcome to Nutrient Noob! Tell us a little more about yourself</header>
+
+            <!--Actual info regarding user setup goes here-->
+            <form action="#">
+
+                <!-- Dietary restrictions -->
+                <div class="inputField">
+                    <label for="vegetarian">Vegetarian</label>
+                    <input type="checkbox" id="vegetarian" name="dietary_restriction" value="Vegetarian">
+                    <label for="vegan">Vegan</label>
+                    <input type="checkbox" id="vegan" name="dietary_restriction" value="Vegan">
+                    <label for="lactose-intolerant">Lactose-Intolerant</label>
+                    <input type="checkbox" id="lactose-intolerant" name="dietary_restriction" value="Lactose-Intolerant">
+                    <label for="gluten-free">Gluten-Free</label>
+                    <input type="checkbox" id="gluten-free" name="dietary_restriction" value="Gluten-Free">
+                    <label for="kosher">Kosher</label>
+                    <input type="checkbox" id="kosher" name="dietary_restriction" value="Kosher">
+                    <label for="halal">Halal</label>
+                    <input type="checkbox" id="halal" name="dietary_restriction" value="Halal">
+                </div>
+                
+                <!-- Favorite food -->
+                <div class="inputField">
+                    <input class="input" type="text" id="favorite_food" placeholder="Favorite Food">
+                </div>
+
+
+            </form>
+            
+            <!-- Complete Setup button -->
+            <div class="loginButton" id="completeSetupBtn">
+                <button type="submit">Complete Setup</button>
+            </div>
+
+
+        </div>
+    </section>
+
+    
+    <script>
+        document.getElementById('completeSetupBtn').addEventListener('click', function() {
+            // Get dietary restrictions
+            var dietaryRestrictions = [];
+            document.querySelectorAll('input[name="dietary_restriction"]:checked').forEach(function(checkbox) {
+                dietaryRestrictions.push(checkbox.value);
+            });
+            dietaryRestrictions = dietaryRestrictions.join(', '); // Convert to string
+
+            // Get favorite food
+            var favoriteFood = document.getElementById('favorite_food').value.trim();
+
+            // Get user ID from sessionStorage
+            var userId = sessionStorage.getItem('user_id');
+
+            // Prepare data to send
+            var userData = {
+                dietary_restrictions: dietaryRestrictions,
+                favorite_food: favoriteFood,
+                user_id: userId
+            };
+
+            console.log(userData);
+            // Send data to the server
+            fetch('/setup_user_profile', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({userData: userData})
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Data stored successfully
+                    console.log('User data stored successfully');
+                    window.location.href = '/'
+                } else {
+                    // Failed to store data
+                    console.error('Failed to store user data');
+                }
+            })
+            .catch(error => {
+                console.error('Error occurred while sending data:', error);
+            }); 
+        });
+    </script>
+</body>
+</html>

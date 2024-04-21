@@ -76,7 +76,7 @@ function isValidPassword(password) {
         alert('Sign up successful! You can now log in.');
         window.location.href = 'login.html';
       });
-    }
+    } 
   
     // This deals with the Login form
     const loginForm = document.querySelector('.login form');
