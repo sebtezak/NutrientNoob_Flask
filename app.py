@@ -73,7 +73,6 @@ def get_instructions():
 def redirect_recipe_instructions():
     return render_template('recipeinstructions.html')
 
-<<<<<<< HEAD
 @app.route('/get_user_data', methods=['POST'])
 def get_user_data():
     # Extract the ingredients from the request
@@ -95,8 +94,6 @@ def setup_user_profile():
     return jsonify(user_profile_data)
 
 
-=======
->>>>>>> fa098ec9b5c4d234b5368a045d5754a350e9bf6a
 
 if __name__ == '__main__':
     app.run(debug=True)
