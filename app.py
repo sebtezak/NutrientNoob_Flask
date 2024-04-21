@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from searchingNutrient import *
+from searchingRecipe import *
 
 
 app = Flask(__name__)
@@ -34,7 +35,7 @@ def nutrient_search():
     # Get the nutrients array from the request
     nutrients = request.json.get('nutrients', [])
 
-    # Perform your search operations using the received nutrients array
+    # Perform search operations using the received nutrients array
     # Here you can write the logic to search for ingredients based on the provided nutrients
     result_ingredients = format_nutrient_search(nutrients)
 
@@ -44,6 +45,19 @@ def nutrient_search():
 @app.route('/nutrientsearch')
 def redirect_nutrient_search():
     return render_template('nutrientsearch.html')
+
+@app.route('/get_recipes', methods=['POST'])
+def get_recipes():
+    # Extract the ingredients from the request
+    ingredients = request.json.get('ingredients', [])
+
+    result_recipes = format_recipe_search(ingredients)
+
+    return jsonify(result_recipes)
+
+@app.route('/recipesearch')
+def redirect_recipe_search():
+    return render_template('recipesearch.html')
 
 
 if __name__ == '__main__':

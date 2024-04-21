@@ -39,9 +39,9 @@ conn.close()
 '''print("Data from CSV file successfully inserted into SQLite database.")'''
 
 
-""" TEST STATEMENTS
+"""TEST STATEMENTS
 # Connect to SQLite database
-conn = sqlite3.connect('NutrientNoob/Databases/recipes.db')
+conn = sqlite3.connect('Databases/recipes.db')
 c = conn.cursor()
 
 # Execute a SELECT query to retrieve data (limit to first 5 recipes)

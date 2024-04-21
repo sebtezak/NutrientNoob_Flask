@@ -69,8 +69,23 @@ def get_top_ingredients_by_nutrient(names, mins, maxs):
         conn.close()
 
 def format_ingredient_name(ingredient_name):
-    # Replace hyphens with spaces and capitalize each word
-    formatted_name = ' '.join(part.capitalize() for part in ingredient_name.replace('-', ' ').split(','))
+    # Split the ingredient name by commas
+    split_names = []
+    for item in ingredient_name:
+        split_items = item.split(',')
+        
+        # Capitalize each word and strip extra whitespace
+        capitalized_items = []
+        for word in split_items:
+            capitalized_word = word.strip().capitalize()
+            capitalized_items.append(capitalized_word)
+        
+        # Join the capitalized words with commas and add to the list
+        formatted_item = ', '.join(capitalized_items)
+        split_names.append(formatted_item)
+    
+    # Join the formatted items with commas
+    formatted_name = ', '.join(split_names)
     
     return formatted_name
 
@@ -101,7 +116,8 @@ def format_nutrient_search(array):
         
     #print(names, mins, maxs)
     search_result = get_top_ingredients_by_nutrient(names, mins, maxs)
-    #print(search_result)
+    random.shuffle(search_result)
+    formatted_search_result = [format_ingredient_name(item) for item in search_result]
 
-    return search_result
+    return formatted_search_result
 

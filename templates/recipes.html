@@ -44,6 +44,8 @@
 
     </header>
 
+
+
     <div class="body" id="ingredientSelect">
 
             
@@ -53,15 +55,16 @@
                 Ingredient 1: <input type="text" id="ingredient1" placeholder="">
             </li>
             <li>
-                Ingredient 2: <input type="text" id="ingredient1" placeholder="">
+                Ingredient 2: <input type="text" id="ingredient2" placeholder="">
             </li>
             <li>
-                Ingredient 3: <input type="text" id="ingredient1" placeholder="">
+                Ingredient 3: <input type="text" id="ingredient3" placeholder="">
             </li>
             <li>
-                Ingredient 4: <input type="text" id="ingredient1" placeholder="">
+                Ingredient 4: <input type="text" id="ingredient4" placeholder="">
             </li>
         
+            <div class="button" id="recipesButton"><button>Find recipes!</button></div>
             
 
 
@@ -84,8 +87,53 @@
         </div>
     </div>
 
+
+    <script>
+    document.getElementById('recipesButton').addEventListener('click', function() {
+        // Get the ingredient values from the input fields
+        var ingredient1 = document.getElementById('ingredient1').value.trim();
+        var ingredient2 = document.getElementById('ingredient2').value.trim();
+        var ingredient3 = document.getElementById('ingredient3').value.trim();
+        var ingredient4 = document.getElementById('ingredient4').value.trim();
+
+        
+        // Create an object with the ingredient values
+        var ingredients = {
+            ingredient1: ingredient1,
+            ingredient2: ingredient2,
+            ingredient3: ingredient3,
+            ingredient4: ingredient4
+        };
+
+
+        // Send a POST request to the server with the ingredient data
+        fetch('/get_recipes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ingredients: ingredients})
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Network response was not ok.');
+        })
+        .then(data => {
+            sessionStorage.setItem('recipeData', JSON.stringify(data));
+            console.log(data);
+            window.location.href = '/recipesearch';
+            
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+    });
+</script>
+
     <script src="{{ url_for('static', filename='readMore.js') }}"></script>
-    <script src="{{ url_for('static', filename='searchingNutrient.py') }}"></script>
+    
 
 </body>
 
