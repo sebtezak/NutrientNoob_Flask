@@ -62,6 +62,32 @@
                 welcomeMessage.innerHTML = '<h1>Welcome  ' + username + '!</h1>';
                 var mainElement = document.querySelector('main');
                 mainElement.insertBefore(welcomeMessage, mainElement.firstChild);
+
+                var user_id = sessionStorage.getItem('user_id');
+                
+                fetch('/get_account_info', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({user_id: user_id})
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(data => { //redirection of data 
+                    
+                    console.log(data);
+                    displayUserInfo(data);
+                    
+                    
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
             }
             else{
                 var welcomeMessage = document.createElement('div');
@@ -70,7 +96,32 @@
                 var mainElement = document.querySelector('main');
                 mainElement.insertBefore(welcomeMessage, mainElement.firstChild);
             }
+
         });
+
+        // Function to display user account information on the page
+        function displayUserInfo(data) {
+            var accountInfoContainer = document.createElement('div');
+            accountInfoContainer.setAttribute('id', 'accountInfo');
+            var userInfoHTML = '<h2>User Account Information:</h2>';
+            userInfoHTML += '<p>Date Joined: ' + data.date_joined + '</p>';
+            userInfoHTML += '<p>Dietary Restrictions: ' + data.dietary_restrictions + '</p>';
+            userInfoHTML += '<p>Email: ' + data.email + '</p>';
+            userInfoHTML += '<p>Favorite Food: ' + data.favorite_food + '</p>';
+            if (data.favorite_recipes === '') {
+                userInfoHTML += '<p>Favorite Recipes: Favorited recipes will appear here!</p>';
+            } else {
+                userInfoHTML += '<p>Favorite Recipes: ' + data.favorite_recipes + '</p>';
+            }
+            if (data.favorite_ingredients === '') {
+                userInfoHTML += '<p>Favorite Ingredients: Favorited ingredients will appear here!</p>';
+            } else {
+                userInfoHTML += '<p>Favorite Ingredients: ' + data.favorite_ingredients + '</p>';
+            }
+            accountInfoContainer.innerHTML = userInfoHTML;
+            var mainElement = document.querySelector('main');
+            mainElement.appendChild(accountInfoContainer);
+        }
     </script>
 
 </body>

@@ -101,6 +101,12 @@ def get_login_data():
 
     return jsonify(valid_login)
 
+@app.route('/get_account_info', methods=['POST'])
+def get_account_info():
+    user_id = request.json.get('user_id', [])
+    user_account_info = get_account_info_from_id(user_id)
+    print(user_account_info)
+    return jsonify(user_account_info)
 
 
 if __name__ == '__main__':
