@@ -56,7 +56,7 @@
     </div>
     </main>
 
-    <div class="button" id="findMyButton">
+    <div class="button" id="recipeButtons">
         <button id="addToFavorites">Add to favorites!</button>
         <button id="returnToSearch">Return to search</button>
     </div>
@@ -64,7 +64,7 @@
 
 
     <script>
-        // this script displays the ingredients returned by the nutrienta search
+            // this script displays the ingredients returned by the nutrienta search
         const data = JSON.parse(sessionStorage.getItem('recipeInfo'));
         console.log(data);
         load_recipe_data(data);
@@ -72,31 +72,30 @@
         function load_recipe_data(data) {
             var recipeInfoContainer = document.createElement('div');
             recipeInfoContainer.setAttribute('id', 'recipeInfo');
-            var recipeInfoHTML = '<h2>Recipe Information:</h2>';
+            var recipeInfoHTML = '';
             const nutritionArray = JSON.parse(data.nutrition);
             const ingredientsString = data.ingredients.substring(1, data.ingredients.length - 1);
             const ingredientsArray = ingredientsString.split("', '");
+            //ingredientsArray.setAttribute('id', 'ingredients');
             
             const stepsString = data.steps.substring(1, data.steps.length - 1);
             const stepsArray = stepsString.split("', '");
-            sessionStorage.setItem('recipeName', JSON.stringify(data.name));
+	    sessionStorage.setItem('recipeName', JSON.stringify(data.name));
 
+
+
+            //recipeInfoHTML += '<br>';
+            recipeInfoHTML += '<h2 id= "recipeTitle">How to make: "' + data.name + '"</h2>';
             recipeInfoHTML += '<br>';
-            recipeInfoHTML += '<p>Name: ' + data.name + '</p>';
-            recipeInfoHTML += '<p>Description: ' + data.description.charAt(0).toUpperCase() + data.description.substring(1, data.description.length - 1) + '</p>';
-            recipeInfoHTML += '<p>Time: ' + data.minutes + ' minutes </p>';
-            recipeInfoHTML += '<br>';
-            recipeInfoHTML += '<p>Nutrition Facts:</p>';
-            recipeInfoHTML += '<p>&nbsp;&nbsp;&nbsp;&nbsp;Calories: ' + nutritionArray[0] + '</p>';
-            recipeInfoHTML += '<p>&nbsp;&nbsp;&nbsp;&nbsp;Total Fat: ' + nutritionArray[1] + '% PDV</p>';
-            recipeInfoHTML += '<p>&nbsp;&nbsp;&nbsp;&nbsp;Sugar: ' + nutritionArray[2] + '% PDV</p>';
-            recipeInfoHTML += '<p>&nbsp;&nbsp;&nbsp;&nbsp;Sodium: ' + nutritionArray[3] + '% PDV</p>';
-            recipeInfoHTML += '<p>&nbsp;&nbsp;&nbsp;&nbsp;Protein: ' + nutritionArray[4] + '% PDV</p>';
-            recipeInfoHTML += '<p>&nbsp;&nbsp;&nbsp;&nbsp;Saturated Fat: ' + nutritionArray[5] + '% PDV</p>';
-            recipeInfoHTML += '<p>&nbsp;&nbsp;&nbsp;&nbsp;Carbohydrates: ' + nutritionArray[6] + '% PDV</p>';
+
+            var recipeDescript = document.createElement('div');
+            recipeDescript.setAttribute('class', 'recipe-info-box'); 
+            recipeInfoHTML += '<p class="recipeDescription">About this recipe: ' + data.description.charAt(0).toUpperCase() + data.description.substring(1, data.description.length - 1) + '</p>';
+            recipeInfoHTML += '<p class="recipeMinutes">Time to make: ' + data.minutes + ' minutes </p>';
             
             recipeInfoHTML += '<br>';
-            recipeInfoHTML += '<p>Ingredients: </p>'
+            recipeInfoHTML += '<div class="recipeIngredients">';
+            recipeInfoHTML += '<p id="ingredientsNeededTitle">Ingredients needed: </p>'
             for (ingredient in ingredientsArray) {
                 ingredientstring = ingredientsArray[ingredient]
                 if (ingredient == 0) {
@@ -110,8 +109,11 @@
                 }
                 recipeInfoHTML += ingredientsArray[ingredient]; 
             }
+            recipeInfoHTML += '</div>';
+
+            recipeInfoHTML += '<div class="recipeSteps">';
             recipeInfoHTML += '<br>' + '<br>';
-            recipeInfoHTML += '<p>Instructions: </p>'
+            recipeInfoHTML += '<p id="instructionsLabel">Instructions: </p>'
             
             for (step in stepsArray) {
                 stepstring = stepsArray[step]
@@ -127,6 +129,20 @@
                 }
                 recipeInfoHTML += stepsArray[step]; 
             } 
+            recipeInfoHTML += '</div>';
+            recipeInfoHTML += '<br>' + '<br>';
+            
+            recipeInfoHTML += '<div class="nutrition">';
+            recipeInfoHTML += '<p>Nutrition Facts:</p>';
+            recipeInfoHTML += '<p>&nbsp;&nbsp;&nbsp;&nbsp;Calories: ' + nutritionArray[0] + '</p>';
+            recipeInfoHTML += '<p>&nbsp;&nbsp;&nbsp;&nbsp;Total Fat: ' + nutritionArray[1] + '% PDV</p>';
+            recipeInfoHTML += '<p>&nbsp;&nbsp;&nbsp;&nbsp;Sugar: ' + nutritionArray[2] + '% PDV</p>';
+            recipeInfoHTML += '<p>&nbsp;&nbsp;&nbsp;&nbsp;Sodium: ' + nutritionArray[3] + '% PDV</p>';
+            recipeInfoHTML += '<p>&nbsp;&nbsp;&nbsp;&nbsp;Protein: ' + nutritionArray[4] + '% PDV</p>';
+            recipeInfoHTML += '<p>&nbsp;&nbsp;&nbsp;&nbsp;Saturated Fat: ' + nutritionArray[5] + '% PDV</p>';
+            recipeInfoHTML += '<p>&nbsp;&nbsp;&nbsp;&nbsp;Carbohydrates: ' + nutritionArray[6] + '% PDV</p>';
+            recipeInfoHTML += '</div">';
+
             
             recipeInfoContainer.innerHTML = recipeInfoHTML;
             var mainElement = document.querySelector('main');
