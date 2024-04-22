@@ -44,7 +44,7 @@
     </header>
 
     <main>
-        <h1>User Account Page</h1>
+        
     </main>
 
     <div class="sign-up" id="sign-up">
@@ -52,6 +52,26 @@
             <div></div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var username = sessionStorage.getItem('username');
+            if (username) {
+                var welcomeMessage = document.createElement('div');
+                welcomeMessage.setAttribute('id', 'accountMessage')
+                welcomeMessage.innerHTML = '<h1>Welcome  ' + username + '!</h1>';
+                var mainElement = document.querySelector('main');
+                mainElement.insertBefore(welcomeMessage, mainElement.firstChild);
+            }
+            else{
+                var welcomeMessage = document.createElement('div');
+                welcomeMessage.setAttribute('id', 'accountMessage')
+                welcomeMessage.innerHTML = '<h1>Welcome to Nutrient Noob, please sign in or make an account!</h1>';
+                var mainElement = document.querySelector('main');
+                mainElement.insertBefore(welcomeMessage, mainElement.firstChild);
+            }
+        });
+    </script>
 
 </body>
 </html>
