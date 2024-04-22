@@ -424,6 +424,11 @@ h4 {
     color: #A9BD89;
 }
 
+#recipeSearchResults li{
+    text-decoration: underline #A9BD89;
+    cursor: pointer;
+}
+
 #ingredientSelect{
     margin-left: 35px;
     color: #A9BD89;
