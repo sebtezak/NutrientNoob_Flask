@@ -67,7 +67,7 @@ def get_instructions():
 
     recipe_info = find_recipe_info(recipe_id)
     
-    print(recipe_info)
+    #print(recipe_info)
 
     return jsonify(recipe_info)
 
