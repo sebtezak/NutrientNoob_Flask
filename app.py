@@ -105,9 +105,17 @@ def get_login_data():
 def get_account_info():
     user_id = request.json.get('user_id', [])
     user_account_info = get_account_info_from_id(user_id)
-    print(user_account_info)
+
+
     return jsonify(user_account_info)
 
+@app.route('/favorite_recipe', methods=['POST'])
+def favorite_recipe():
+    favoriteRecipeInfo = request.json.get('favoriteRecipeInfo', [])
+    print(favoriteRecipeInfo)
+    recipe_favorite_success = favorite_recipe_from_name(favoriteRecipeInfo)
+
+    return jsonify(recipe_favorite_success)
 
 if __name__ == '__main__':
     app.run(debug=True)

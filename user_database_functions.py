@@ -139,3 +139,53 @@ def get_account_info_from_id(user_id):
     finally:
         # Close the database connection
         conn.close()
+
+
+def favorite_recipe_from_name(recipe_info):
+    user_id = recipe_info.get('userID')
+    recipe_name = recipe_info.get('recipeName')
+
+    if not user_id or not recipe_name:
+        #print("Invalid input format. Please provide 'userID' and 'recipeName'.")
+        return False
+
+    try:
+        # Connect to the SQLite database
+        conn = sqlite3.connect('Databases/user.db')
+        cursor = conn.cursor()
+
+        # Retrieve user information from the database based on user_id
+        cursor.execute("SELECT favorite_recipes FROM user WHERE user_id=?", (user_id,))
+        user_info = cursor.fetchone()
+
+        if user_info:
+            favorite_recipes_str = user_info[0]
+            # Split the favorite recipes string into a list
+            favorite_recipes = favorite_recipes_str.split(',') if favorite_recipes_str else []
+
+            # Check if the recipe is already in the favorites or if the favorites list is full
+            if recipe_name in favorite_recipes or len(favorite_recipes) >= 10:
+                return False  # Recipe already in favorites or favorites list full
+            
+            # Append the new recipe name to the existing list of favorite recipes
+            favorite_recipes.append(recipe_name)
+            # Join the list back into a string
+            favorite_recipes_str = ','.join(favorite_recipes)
+            
+            # Update user's data in the database
+            cursor.execute("UPDATE user SET favorite_recipes = ? WHERE user_id = ?", (favorite_recipes_str, user_id))
+            conn.commit()
+            
+            return True  # Recipe successfully added to favorites
+        else:
+            print("User not found.")
+            return False
+
+    except sqlite3.Error as e:
+        print("Error retrieving user account information:", e)
+        return False
+
+    finally:
+        # Close the cursor and connection
+        cursor.close()
+        conn.close()

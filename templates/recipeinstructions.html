@@ -56,6 +56,13 @@
     </div>
     </main>
 
+    <div class="button" id="findMyButton">
+        <button id="addToFavorites">Add to favorites!</button>
+        <button id="returnToSearch">Return to search</button>
+    </div>
+
+
+
     <script>
         // this script displays the ingredients returned by the nutrienta search
         const data = JSON.parse(sessionStorage.getItem('recipeInfo'));
@@ -72,7 +79,7 @@
             
             const stepsString = data.steps.substring(1, data.steps.length - 1);
             const stepsArray = stepsString.split("', '");
-            console.log(stepsArray);
+            sessionStorage.setItem('recipeName', JSON.stringify(data.name));
 
             recipeInfoHTML += '<br>';
             recipeInfoHTML += '<p>Name: ' + data.name + '</p>';
@@ -114,7 +121,6 @@
                 }
                 else if (step == stepsArray.length - 1) {
                     stepsArray[step] = stepsArray.length + ". " + stepstring.charAt(0).toUpperCase() + stepstring.substring(1, stepstring.length - 1);
-                    console.log(stepsArray[step]);
                 }
                 else {
                     stepsArray[step] = (int_step + 1) + ". " + stepstring.charAt(0).toUpperCase() + stepstring.slice(1) + '<br>';
@@ -126,6 +132,56 @@
             var mainElement = document.querySelector('main');
             mainElement.appendChild(recipeInfoContainer);
         }
+
+        document.getElementById('returnToSearch').addEventListener('click', function() {
+            // Redirect to the search page
+            window.location.href = "{{ url_for('recipes') }}"; // Replace 'search_page' with the actual route
+        });
+        document.getElementById('addToFavorites').addEventListener('click', function() {
+            const recipeName = JSON.parse(sessionStorage.getItem('recipeName'));
+            const userID = JSON.parse(sessionStorage.getItem('user_id'));
+            if (userID == null) {
+                alert("You must sign in to add this recipe to favorites");
+                return;
+            }
+            var favoriteRecipeInfo = {
+                userID: userID,
+                recipeName: recipeName
+            };
+            console.log(favoriteRecipeInfo);
+
+            fetch('/favorite_recipe', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            
+            body: JSON.stringify({favoriteRecipeInfo: favoriteRecipeInfo})
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(data => { //redirection of data 
+                
+                console.log(data);
+                if (data == false) {
+                    alert("Error: Recipe already in favorites or list full (Maximum 10)");
+                    return;
+                }
+                else {
+                    alert("Recipe succesfully added to favorites!");
+                    return;
+                }
+                
+                
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            })
+        });
     </script>
 </body>
 </html>
