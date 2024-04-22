@@ -119,8 +119,15 @@
                 userInfoHTML += '<p>Favorite Ingredients: ' + data.favorite_ingredients + '</p>';
             }
 
-            userInfoHTML += '<button id="logout">Logout</button>'
+            userInfoHTML += '<div id="accountButtons">';
+            userInfoHTML += '<div id="logoutButton">';
+            userInfoHTML += '<button id="logout">Logout</button>';
+            userInfoHTML += '</div>';
+            userInfoHTML += '<div id="deleteButton">';
             userInfoHTML += '<button id="delete-account">Delete Account</button>'; // Add delete account button
+            userInfoHTML += '</div>';
+            userInfoHTML += '</div>';
+            
             accountInfoContainer.innerHTML = userInfoHTML;
             var mainElement = document.querySelector('main');
             mainElement.appendChild(accountInfoContainer);
