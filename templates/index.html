@@ -47,7 +47,8 @@
     <main>
         <div class="homeTitles">
             <div class="content">
-                <h4>Welcome to Nutrient Noob</h4>
+                <!--<h4>Welcome to Nutrient Noob</h4>-->
+                <p> </p>
                 <h1>Revolutionize your health and nutrition</h1>
                 <h3>Recipes curated to your needs</h3>
                 <a href="{{ url_for('recipes') }}">
@@ -79,7 +80,14 @@
             var username = sessionStorage.getItem('username');
             if (username) {
                 var welcomeMessage = document.createElement('div');
-                welcomeMessage.innerHTML = '<h1>Welcome, ' + username + '!</h1>';
+                welcomeMessage.setAttribute('id', 'welcomeMessage')
+                welcomeMessage.innerHTML = '<h4>Welcome to Nutrient Noob, ' + username + '!</h4>';
+                var mainElement = document.querySelector('main');
+                mainElement.insertBefore(welcomeMessage, mainElement.firstChild);
+            }
+            else{
+                var welcomeMessage = document.createElement('div');
+                welcomeMessage.innerHTML = '<h4>Welcome to Nutrient Noob!</h4>';
                 var mainElement = document.querySelector('main');
                 mainElement.insertBefore(welcomeMessage, mainElement.firstChild);
             }

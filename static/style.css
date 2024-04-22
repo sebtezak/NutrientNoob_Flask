@@ -261,11 +261,32 @@ h3 {
 }
 
 h4 {
-    margin-top: 40px;
+    margin-top: 30px;
     color: #C9D5B5;
     letter-spacing: 2px;
     font-size: 15px;
+    margin-left: 45px;
 }
+
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 24px; 
+    }
+    h4 {
+        margin-left: 20px; 
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 20px; 
+    }
+
+    h4 {
+        margin-left: 10px; 
+    }
+}
+
 
 #startButton button {
     background-color: #C9D5B5;
