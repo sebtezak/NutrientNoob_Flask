@@ -403,3 +403,9 @@ h4 {
     margin-left: 35px;
     margin-top: 10px;
 }
+
+#note{
+    padding: 10px;
+    font-size: 10px;
+    margin-bottom: 10px;
+}
