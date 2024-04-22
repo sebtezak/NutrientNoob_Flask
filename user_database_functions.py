@@ -104,3 +104,38 @@ def check_login(login_data):
 
     # Return the user_id if credentials are valid, otherwise return 0
     return user_id[0] if user_id else 0
+
+def get_account_info_from_id(user_id):
+    # Connect to the SQLite database
+    conn = sqlite3.connect('Databases/user.db')
+    cursor = conn.cursor()
+
+    try:
+        # Retrieve user information from the database based on user_id
+        cursor.execute("SELECT username, email, favorite_recipes, favorite_ingredients, dietary_restrictions, date_joined, profile_picture, favorite_food FROM user WHERE user_id=?", (user_id,))
+        user_info = cursor.fetchone()
+
+        if user_info:
+            # Create a dictionary to store user account information
+            account_info = {
+                'username': user_info[0],
+                'email': user_info[1],
+                'favorite_recipes': user_info[2],
+                'favorite_ingredients': user_info[3],
+                'dietary_restrictions': user_info[4],
+                'date_joined': user_info[5],
+                'profile_picture': user_info[6],
+                'favorite_food': user_info[7]
+            }
+            return account_info
+        else:
+            print("User not found.")
+            return None
+
+    except sqlite3.Error as e:
+        print("Error retrieving user account information:", e)
+        return None
+
+    finally:
+        # Close the database connection
+        conn.close()
