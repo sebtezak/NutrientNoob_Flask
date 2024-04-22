@@ -117,5 +117,13 @@ def favorite_recipe():
 
     return jsonify(recipe_favorite_success)
 
+@app.route('/delete_user', methods=['POST'])
+def delete_user():
+    user_id = request.json.get('user_id', [])
+    print(user_id)
+    delete_user_successful = remove_user(user_id)
+
+    return jsonify(delete_user_successful)
+
 if __name__ == '__main__':
     app.run(debug=True)
