@@ -108,16 +108,20 @@ def format_nutrient_search(array):
         if name.split('_')[0] in major_minerals:
             name = "Major_Minerals_" + name
         elif any(vitamin in name for vitamin in vitamins):
-            name = "Vitamins_" + name
+            if name == "Vitamin_A":
+                name = "Vitamins_Vitamin_A_RAE"  # Adjust column name for Vitamin A
+            else:
+                name = "Vitamins_" + name
 
         names.append(name)
         mins.append(min_value)
         maxs.append(max_value)
         
-    #print(names, mins, maxs)
+
     search_result = get_top_ingredients_by_nutrient(names, mins, maxs)
     random.shuffle(search_result)
     formatted_search_result = [format_ingredient_name(item) for item in search_result]
 
     return formatted_search_result
+
 
