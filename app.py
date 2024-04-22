@@ -63,11 +63,13 @@ def redirect_recipe_search():
 @app.route('/get_instructions', methods=['POST'])
 def get_instructions():
     # Extract the ingredients from the request
-    recipes = request.json.get('id', [])
+    recipe_id = request.json.get('id', [])
 
-    result_recipe_instructions = format_recipe_search(recipes)
+    recipe_info = find_recipe_info(recipe_id)
+    
+    print(recipe_info)
 
-    return jsonify(result_recipe_instructions)
+    return jsonify(recipe_info)
 
 @app.route('/recipeinstructions')
 def redirect_recipe_instructions():
@@ -78,7 +80,6 @@ def get_user_data():
     # Extract the ingredients from the request
     user_data = request.json.get('user_data', [])
     user_id = add_new_user(user_data)
-    print(user_id)
 
     return jsonify(user_id)
 

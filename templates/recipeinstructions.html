@@ -24,8 +24,8 @@
             <div class="nav">
                 <ul>
                     <li><a href="{{ url_for('account') }}">Account</a></li>
-                    <li><a class="active" href="{{ url_for('nutrition') }}">Nutrition</a></li>
-                    <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
+                    <li><a href="{{ url_for('nutrition') }}">Nutrition</a></li>
+                    <li><a class="active" href="{{ url_for('recipes') }}">Recipes</a></li>
                     <li><a href="{{ url_for('index') }}">Home</a></li>
                     <!--<input type="text" placeholder="Search..">-->
                     <!--<li><input type="search" placeholder="Search..."></li>-->
@@ -55,8 +55,9 @@
 
     <script>
         // this script displays the ingredients returned by the nutrienta search
-        // const data = JSON.parse(sessionStorage.getItem('nutrientData'));
-        // const searchResultsList = document.getElementById('searchResultsList');
+        const data = JSON.parse(sessionStorage.getItem('recipeInfo'));
+        console.log(data);
+        //const searchResultsList = document.getElementById('searchResultsList');
 
     </script>
 </body>

@@ -61,21 +61,23 @@
             console.log(data);
             for (var i = 0; i < data.length; i++) {
                 const listItem = document.createElement('li');
-                const id = 'recipeTitle' + i; 
+                const id = data[i][1]; 
                 listItem.setAttribute('id', id);
                 const link = document.createElement('a'); // link to the recipe instructions page
                 const title = document.createElement('h2');
 
-                // links to the recipe instructions page
-                link.href = "/recipeinstructions";
+                // uncommenting this line will break the program
+                //link.href = "/recipeinstructions";
                 
                 title.textContent = data[i][0]; // access the correct index within the array
                 link.appendChild(title); 
                 listItem.appendChild(link); 
                 searchResultsList.appendChild(listItem);
 
+                
                 listItem.addEventListener('click', function() {
                     const id = this.id;
+                    
                     fetch('/get_instructions', {
                         method: 'POST',
                         headers: {
@@ -88,8 +90,8 @@
                         }
                         throw new Error('Network response was not ok.');
                     }).then(data => { //redirection of data 
-                        sessionStorage.setItem('recipeData', JSON.stringify(data));
-                        console.log(data);
+                        sessionStorage.setItem('recipeInfo', JSON.stringify(data));
+                        //console.log(data);
                         window.location.href = '/recipeinstructions';
                         
                     }).catch(error => {

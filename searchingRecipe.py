@@ -44,3 +44,32 @@ def format_recipe_search(array):
     
     random.shuffle(result_recipes)
     return result_recipes
+
+
+def find_recipe_info(recipe_id):
+    # Connect to the SQLite database
+    conn = sqlite3.connect('Databases/recipes.db')
+    cursor = conn.cursor()
+
+    # Fetch recipe information from the database
+    cursor.execute("SELECT name, minutes, tags, nutrition, steps, description, ingredients FROM recipes WHERE id=?", (recipe_id,))
+    recipe_data = cursor.fetchone()
+
+    # Close the connection
+    conn.close()
+
+    if recipe_data:
+        # Create a dictionary to store recipe information
+        recipe_info = {
+            'name': recipe_data[0],
+            'minutes': recipe_data[1],
+            'tags': recipe_data[2],
+            'nutrition': recipe_data[3],
+            'steps': recipe_data[4],
+            'description': recipe_data[5],
+            'ingredients': recipe_data[6]
+        }
+        return recipe_info
+    else:
+        return None
+    
