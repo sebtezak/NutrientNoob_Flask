@@ -43,6 +43,8 @@
         </div>
 
     </header>
+
+    <main>
     
     <div class="nutrientSearchResults" id="nutrientSearchResults">
         <h1 id="recipeName">
@@ -52,13 +54,78 @@
             <!-- Results will be dynamically added here -->
         </ul>
     </div>
+    </main>
 
     <script>
         // this script displays the ingredients returned by the nutrienta search
         const data = JSON.parse(sessionStorage.getItem('recipeInfo'));
         console.log(data);
-        //const searchResultsList = document.getElementById('searchResultsList');
+        load_recipe_data(data);
+    
+        function load_recipe_data(data) {
+            var recipeInfoContainer = document.createElement('div');
+            recipeInfoContainer.setAttribute('id', 'recipeInfo');
+            var recipeInfoHTML = '<h2>Recipe Information:</h2>';
+            const nutritionArray = JSON.parse(data.nutrition);
+            const ingredientsString = data.ingredients.substring(1, data.ingredients.length - 1);
+            const ingredientsArray = ingredientsString.split("', '");
+            
+            const stepsString = data.steps.substring(1, data.steps.length - 1);
+            const stepsArray = stepsString.split("', '");
+            console.log(stepsArray);
 
+            recipeInfoHTML += '<br>';
+            recipeInfoHTML += '<p>Name: ' + data.name + '</p>';
+            recipeInfoHTML += '<p>Description: ' + data.description.charAt(0).toUpperCase() + data.description.substring(1, data.description.length - 1) + '</p>';
+            recipeInfoHTML += '<p>Time: ' + data.minutes + ' minutes </p>';
+            recipeInfoHTML += '<br>';
+            recipeInfoHTML += '<p>Nutrition Facts:</p>';
+            recipeInfoHTML += '<p>&nbsp;&nbsp;&nbsp;&nbsp;Calories: ' + nutritionArray[0] + '</p>';
+            recipeInfoHTML += '<p>&nbsp;&nbsp;&nbsp;&nbsp;Total Fat: ' + nutritionArray[1] + '% PDV</p>';
+            recipeInfoHTML += '<p>&nbsp;&nbsp;&nbsp;&nbsp;Sugar: ' + nutritionArray[2] + '% PDV</p>';
+            recipeInfoHTML += '<p>&nbsp;&nbsp;&nbsp;&nbsp;Sodium: ' + nutritionArray[3] + '% PDV</p>';
+            recipeInfoHTML += '<p>&nbsp;&nbsp;&nbsp;&nbsp;Protein: ' + nutritionArray[4] + '% PDV</p>';
+            recipeInfoHTML += '<p>&nbsp;&nbsp;&nbsp;&nbsp;Saturated Fat: ' + nutritionArray[5] + '% PDV</p>';
+            recipeInfoHTML += '<p>&nbsp;&nbsp;&nbsp;&nbsp;Carbohydrates: ' + nutritionArray[6] + '% PDV</p>';
+            
+            recipeInfoHTML += '<br>';
+            recipeInfoHTML += '<p>Ingredients: </p>'
+            for (ingredient in ingredientsArray) {
+                ingredientstring = ingredientsArray[ingredient]
+                if (ingredient == 0) {
+                    ingredientsArray[ingredient] = ingredientstring.charAt(1).toUpperCase() + ingredientstring.slice(2) + ", ";
+                }
+                else if (ingredient == ingredientsArray.length - 1) {
+                    ingredientsArray[ingredient] = ingredientstring.charAt(0).toUpperCase() + ingredientstring.substring(1, ingredientstring.length - 1);
+                }
+                else {
+                    ingredientsArray[ingredient] = ingredientstring.charAt(0).toUpperCase() + ingredientstring.slice(1) + ", ";
+                }
+                recipeInfoHTML += ingredientsArray[ingredient]; 
+            }
+            recipeInfoHTML += '<br>' + '<br>';
+            recipeInfoHTML += '<p>Instructions: </p>'
+            
+            for (step in stepsArray) {
+                stepstring = stepsArray[step]
+                int_step = parseInt(step);
+                if (step == 0) {
+                    stepsArray[step] = "1. " + stepstring.charAt(1).toUpperCase() + stepstring.slice(2) + '<br>';
+                }
+                else if (step == stepsArray.length - 1) {
+                    stepsArray[step] = stepsArray.length + ". " + stepstring.charAt(0).toUpperCase() + stepstring.substring(1, stepstring.length - 1);
+                    console.log(stepsArray[step]);
+                }
+                else {
+                    stepsArray[step] = (int_step + 1) + ". " + stepstring.charAt(0).toUpperCase() + stepstring.slice(1) + '<br>';
+                }
+                recipeInfoHTML += stepsArray[step]; 
+            } 
+            
+            recipeInfoContainer.innerHTML = recipeInfoHTML;
+            var mainElement = document.querySelector('main');
+            mainElement.appendChild(recipeInfoContainer);
+        }
     </script>
 </body>
 </html>
