@@ -16,6 +16,10 @@
 <body>
     <section class="container userForms">
         <div class="usersetup">
+            <div id="setupLogo">
+                <img src="{{ url_for('static', filename='Nutrient Noob Logo.png') }}">
+            </div>
+
             <header id="idTitle">Welcome to Nutrient Noob! Tell us a little more about yourself</header>
 
             <!--Actual info regarding user setup goes here-->
@@ -23,22 +27,49 @@
 
                 <!-- Dietary restrictions -->
                 <div class="inputField">
-                    <label for="vegetarian">Vegetarian</label>
+                    <h2 id="setupQuestion">Do you have any dietary restrictions? If so, please select the options in which you identify most:</h2>
+                    <h2 id="allergyQuestion">Diets:</h2>
+
                     <input type="checkbox" id="vegetarian" name="dietary_restriction" value="Vegetarian">
-                    <label for="vegan">Vegan</label>
+                    <label for="vegetarian">Vegetarian</label>
+                    
                     <input type="checkbox" id="vegan" name="dietary_restriction" value="Vegan">
-                    <label for="lactose-intolerant">Lactose-Intolerant</label>
-                    <input type="checkbox" id="lactose-intolerant" name="dietary_restriction" value="Lactose-Intolerant">
-                    <label for="gluten-free">Gluten-Free</label>
-                    <input type="checkbox" id="gluten-free" name="dietary_restriction" value="Gluten-Free">
-                    <label for="kosher">Kosher</label>
+                    <label for="vegan">Vegan</label>
+
+                    <input type="checkbox" id="pescatarian" name="dietary_restriction" value="Pescatarian">
+                    <label for="pescatarian">Pescatarian</label>
+                    
                     <input type="checkbox" id="kosher" name="dietary_restriction" value="Kosher">
-                    <label for="halal">Halal</label>
+                    <label for="kosher">Kosher</label>
+
                     <input type="checkbox" id="halal" name="dietary_restriction" value="Halal">
+                    <label for="halal">Halal</label>
+
+                    <h2 id="allergyQuestion">Allergies:</h2>
+
+                    <input type="checkbox" id="lactose-intolerant" name="dietary_restriction" value="Lactose-Intolerant">
+                    <label for="lactose-intolerant">Lactose-Intolerant</label>
+
+                    <input type="checkbox" id="gluten-free" name="dietary_restriction" value="Gluten-Free">
+                    <label for="gluten-free">Gluten-Free</label>
+
+                    <input type="checkbox" id="peanuts" name="dietary_restriction" value="peanuts">
+                    <label for="peanuts">Peanuts</label>
+
+                    <input type="checkbox" id="treenuts" name="dietary_restriction" value="Treenuts">
+                    <label for="treenuts">Treenuts</label>
+
+                    <input type="checkbox" id="soy" name="dietary_restriction" value="Soy">
+                    <label for="soy">Soy</label>
+
+                    <input type="checkbox" id="shellfish" name="dietary_restriction" value="Shellfish">
+                    <label for="shellfish">Shellfish</label>
+
                 </div>
                 
                 <!-- Favorite food -->
                 <div class="inputField">
+                    <h2 id="setupQuestion">It is important to enjoy what you eat, what's your favorite food?</h2>
                     <input class="input" type="text" id="favorite_food" placeholder="Favorite Food">
                 </div>
 

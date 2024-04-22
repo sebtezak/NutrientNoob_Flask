@@ -108,6 +108,28 @@ body {
     background-color: #A9BD89;
 }
 
+#completeSetupBtn{
+    text-align: center;
+}
+
+#completeSetupBtn button{
+    height: 40px;
+    width: 150px;
+    color: #2C3328;
+    background-color: #F6F4F4;
+    margin-top: 20px;
+    border-radius: 10px;
+    border-color: #2C3328;
+    cursor: pointer;
+}
+
+#completeSetupBtn button:hover{
+    color: #2C3328;
+    background-color: #A1A78B;
+    color:#F6F4F4;
+    border-color: #f6f6f6;
+}
+
 /*Login and Sign Up form styling*/
 *{
     margin: 0;
@@ -132,8 +154,24 @@ form {
 form .inputField {
     margin-top: 20px;
     width: 100%;
-    height: 40px;
+    /*height: 40px;*/
+    padding: 10px;
+    background-color: #f6f4f4;
     border: 1px solid #2C3328;
+}
+
+.inputField input[name="dietary_restriction"]{
+    margin-left: 10px;
+}
+
+#setupQuestion{
+    font-size: 20px;
+
+}
+
+#allergyQuestion{
+    font-size: 15px;
+
 }
 
 form .input {
@@ -428,4 +466,26 @@ h4 {
     padding: 10px;
     font-size: 10px;
     margin-bottom: 10px;
+}
+
+#accountInfo{
+    margin-left: 35px;
+    margin-top: 50px;
+}
+
+#accountInfo h2{
+    margin-bottom: 10px;
+}
+
+#accountInfo p{
+    margin-bottom: 5px;
+}
+
+#setupLogo{
+    text-align: center;
+}
+
+#setupLogo img{
+    max-width: 50%;
+    height: auto;
 }
