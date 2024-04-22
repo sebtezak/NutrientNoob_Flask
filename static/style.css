@@ -178,6 +178,8 @@ form .input {
     height: 100%;
     width: 100%;
     color: #2C3328;
+    border:none;
+    background-color: #F6F4F4;
 }
 
 .loginButton button {
